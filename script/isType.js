@@ -1,4 +1,4 @@
-// A set of type checking functions
+// A set of type checking functions.
 
 function /// Check is variable integer
 isInteger($variable) // true || false
