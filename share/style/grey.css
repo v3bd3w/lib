@@ -1,10 +1,16 @@
-@font-face {
-	font-family: 'monospace';
-	src: url('/share/font/terminus.ttf');
+* { 
+	font-family: 'monospace'; font-size: 20px; 
+	line-height: 20px; caret-color: #FFF;
+	text-underline-offset: 7px;
+	text-decoration-thickness: 1px;
 }
-
-* { font-family: 'monospace'; font-size: 20px; line-height: 20px; caret-color: #FFF; }
 body { background-color: #000; color: #AAA; }
+
+::-webkit-scrollbar { height: 10px; width: 10px; background: #000; } 
+::-webkit-scrollbar-thumb { background: #35363a; } 
+::-webkit-scrollbar-corner { background: #000; }
+
+a { color: #37F; } a:visited { color: #A00; }
 
 b { font-weight: normal; color: #EEE; }
 i { font-style: normal; color: #37F; }
@@ -43,8 +49,8 @@ legend {
 /* selection {{{ */
 ::selection 
 	{
-	background: #37F;
-	color: #EEE;
+	background: #666;
+	color: #DDD;
 	}
 input[type='text']:focus
 ,textarea:focus
@@ -156,4 +162,5 @@ input[type='radio']
 	top: 4px;
 	}
 /* }}} appearance = none */
+
 

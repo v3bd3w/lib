@@ -16,11 +16,46 @@ HEREDOC;
 	static $scripts = [];
 	static $script = "";
 	
+	function __construct($path_to_font = NULL, $path_to_favicon = NULL)
+	{//{{{
+		if(!is_null($path_to_font) && is_string($path_to_font)) {
+			$return = file_get_contents($path_to_font);
+			if(!is_string($return)) {
+				if(defined('DEBUG') && DEBUG) var_dump(['$path_to_font' => $path_to_font]);
+				throw new Exception("Can't get contents from font file");
+			}
+			else {
+				$base64_font = base64_encode($return);
+				self::$style .= 
+<<<HEREDOC
+@font-face {
+	font-family: 'monospace';
+	src: url(data:font/truetype;base64,{$base64_font});
+}
+HEREDOC;
+			}
+		}
+		if(!is_null($path_to_favicon) && is_string($path_to_favicon)) {
+			$return = file_get_contents($path_to_favicon);
+			if(!is_string($return)) {
+				if(defined('DEBUG') && DEBUG) var_dump(['$path_to_favicon' => $path_to_favicon]);
+				throw new Exception("Can't get contents from favicon file");
+			}
+			else {
+				$base64_favicon = base64_encode($return);
+				self::$head .= 
+<<<HEREDOC
+<link rel="icon" href="data:image/x-icon;base64,{$base64_favicon}">
+HEREDOC;
+			}
+		}
+	}//}}}
+	
 	function __destruct()
 	{//{{{
 		$ob_level = ob_get_level();
 		if($ob_level > 0) {
-			$ob = ob_get_clean();
+			$ob = ob_get_contents();
 			ob_end_clean();
 		
 			if(!( defined('QUIET') && QUIET === true )) {
