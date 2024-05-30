@@ -1,3 +1,8 @@
+@font-face {
+	font-family: 'monospace';
+	src: url('/share/font/terminus.ttf');
+}
+
 * { 
 	font-family: 'monospace'; font-size: 20px; 
 	line-height: 20px; caret-color: #FFF;
@@ -162,5 +167,4 @@ input[type='radio']
 	top: 4px;
 	}
 /* }}} appearance = none */
-
 
